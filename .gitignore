@@ -1,0 +1,37 @@
+# IDE specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Build directories
+target/
+bin/
+build/
+out/
+
+# Maven wrapper (if not needed in repo)
+.mvn/wrapper/maven-wrapper.jar
+!mvnw
+!mvnw.cmd
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment/config files (if any)
+*.cfg
+
+# Dependency directories (if any)
+lib/
+deps/
+
+# Test reports
+test-output/
+surefire-reports/
