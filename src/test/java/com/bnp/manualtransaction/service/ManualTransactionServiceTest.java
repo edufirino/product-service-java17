@@ -56,6 +56,11 @@ class ManualTransactionServiceTest {
         assertEquals(description, result.getDescription());
         assertNotNull(result.getTransactionDate());
         assertTrue(result.getAmount().compareTo(BigDecimal.ZERO) > 0);
+        assertEquals(productCode, result.getProductCode());
+        assertEquals(cosifCode, result.getCosifCode());
+        assertEquals(description, result.getDescription());
+        assertNotNull(result.getTransactionDate());
+        assertTrue(result.getAmount().compareTo(BigDecimal.ZERO) > 0);
     }
 
     @Test
