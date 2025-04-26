@@ -3,6 +3,7 @@
 *.iml
 *.ipr
 *.iws
+.vscode
 
 # Build directories
 target/

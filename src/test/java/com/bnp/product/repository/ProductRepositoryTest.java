@@ -30,7 +30,7 @@ class ProductRepositoryTest {
     @Test
     void shouldFindAllProducts() {
         var allProducts = repository.findAll();
-        assertThat(allProducts).hasSize(2);
+        assertThat(allProducts).hasSize(4);
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.bnp.manualtransaction.web;
 
 import com.bnp.manualtransaction.application.service.ManualTransactionService;
 import com.bnp.manualtransaction.domain.dto.ManualTransactionDTO;
+import com.bnp.manualtransaction.domain.dto.ManualTransactionResponse;
 import com.bnp.manualtransaction.domain.entity.ManualTransactionEntity;
 import com.bnp.manualtransaction.mapper.ManualTransactionMapper;
 import jakarta.validation.Valid;
@@ -20,14 +21,14 @@ public class ManualTransactionController {
     private final ManualTransactionService service;
 
     public ManualTransactionController(ManualTransactionService service) {
+
         this.service = service;
     }
 
     @GetMapping
-    public List<ManualTransactionDTO> getAll() {
-        return service.findAll().stream()
-                .map(ManualTransactionMapper::toDTO)
-                .collect(Collectors.toList());
+    public List<ManualTransactionResponse> getAll() {
+        return service.findAllWithDescription();
+
     }
 
     @PostMapping

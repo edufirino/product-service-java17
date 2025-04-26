@@ -40,6 +40,9 @@ public class ManualTransactionDTO {
     @Digits(integer = 14, fraction = 2, message = "Amount must be a valid monetary value (up to 14 digits and 2 decimals)")
     private BigDecimal amount;
 
+    @Size(max = 50, message = "Product description must be at most 255 characters")
+    private String productDescription;
+
     public ManualTransactionDTO() {}
 
     public ManualTransactionDTO(
@@ -134,5 +137,13 @@ public class ManualTransactionDTO {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+    
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 }

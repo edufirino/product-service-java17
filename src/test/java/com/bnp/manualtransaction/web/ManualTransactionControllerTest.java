@@ -31,40 +31,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 class ManualTransactionControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @Autowired
-    private ManualTransactionService manualTransactionService;
+        @Autowired
+        private ManualTransactionService manualTransactionService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+        @Autowired
+        private ObjectMapper objectMapper;
 
-    @Test
-    void shouldCreateManualTransaction() throws Exception {
-        ManualTransactionDTO dto = new ManualTransactionDTO(4, 2025, 1,
-                "P001", "COSIFCODE01", "Investment Fund Transaction",
-                LocalDateTime.of(2025, 4, 20, 12, 0, 0, 0),
-                "TEST", new BigDecimal("1000.0"));
+        @Test
+        void shouldCreateManualTransaction() throws Exception {
+                ManualTransactionDTO dto = new ManualTransactionDTO(4, 2025, 1,
+                                "P001", "COSIF123456", "Investment Fund Transaction",
+                                LocalDateTime.of(2025, 4, 20, 12, 0, 0, 0),
+                                "TEST", new BigDecimal("1000.0"));
 
-        ManualTransactionId id = new ManualTransactionId(dto.getMonth(), dto.getYear(), dto.getEntryNumber());
+                ManualTransactionId id = new ManualTransactionId(dto.getMonth(), dto.getYear(), dto.getEntryNumber());
 
-        ManualTransactionEntity entity = new ManualTransactionEntity(
-                id, dto.getProductCode(), dto.getCosifCode(),
-                dto.getDescription(), dto.getTransactionDate(),
-                dto.getUserCode(), dto.getAmount()
-        );
+                ManualTransactionEntity entity = new ManualTransactionEntity(
+                                id, dto.getProductCode(), dto.getCosifCode(),
+                                dto.getDescription(), dto.getTransactionDate(),
+                                dto.getUserCode(), dto.getAmount());
 
-        mockMvc.perform(post("/api/manual-transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.productCode").value("P001"))
-                .andExpect(jsonPath("$.cosifCode").value("COSIFCODE01"))
-                .andExpect(jsonPath("$.description").value("Investment Fund Transaction"))
-                .andExpect(jsonPath("$.transactionDate").value("2025-04-20T12:00:00"))
-                .andExpect(jsonPath("$.userCode").value("TEST"))
-                .andExpect(jsonPath("$.amount").value("1000.0"));
-    }
+                mockMvc.perform(post("/api/manual-transactions")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(dto)))
+                                .andExpect(status().isCreated())
+                                .andExpect(jsonPath("$.productCode").value("P001"))
+                                .andExpect(jsonPath("$.cosifCode").value("COSIF123456"))
+                                .andExpect(jsonPath("$.description").value("Investment Fund Transaction"))
+                                .andExpect(jsonPath("$.transactionDate").value("2025-04-20T12:00:00"))
+                                .andExpect(jsonPath("$.userCode").value("TEST"))
+                                .andExpect(jsonPath("$.amount").value("1000.0"));
+        }
 
 }

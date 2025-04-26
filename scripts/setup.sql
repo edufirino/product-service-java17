@@ -39,12 +39,15 @@ BEGIN
        )';
 
    -- Insert sample data
-   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P001'', ''Product 1 Description'', ''A'')';
-   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P002'', ''Product 2 Description'', ''A'')';
-   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P003'', ''Product 3 Description'', ''B'')';
+   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P001'', ''Home Insurance'', ''A'')';
+   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P002'', ''Private Pension'', ''A'')';
+   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P003'', ''Mortgage Loan'', ''I'')';
+   EXECUTE IMMEDIATE 'INSERT INTO product VALUES (''P004'', ''Auto Consortium'', ''I'')';
 
    EXECUTE IMMEDIATE 'INSERT INTO product_cosif VALUES (''P001'', ''COSIF123456'', ''CL001'', ''A'')';
    EXECUTE IMMEDIATE 'INSERT INTO product_cosif VALUES (''P002'', ''COSIF123457'', ''CL002'', ''A'')';
+   EXECUTE IMMEDIATE 'INSERT INTO product_cosif VALUES (''P003'', ''COSIF123458'', ''CL003'', ''I'')';
+   EXECUTE IMMEDIATE 'INSERT INTO product_cosif VALUES (''P004'', ''COSIF123459'', ''CL004'', ''I'')';
 
    EXECUTE IMMEDIATE '
        INSERT INTO manual_transaction (

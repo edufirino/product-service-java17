@@ -30,7 +30,7 @@ class ProductCosifRepositoryTest {
     @Test
     void shouldFindAllProductCosifRecords() {
         List<ProductCosifEntity> all = repository.findAll();
-        assertThat(all).hasSize(2); // Matches your current DB state
+        assertThat(all).hasSize(4);
     }
 
     @Test
@@ -38,13 +38,13 @@ class ProductCosifRepositoryTest {
         List<ProductCosifEntity> results = repository.findByProductCode("P001");
         assertThat(results).hasSize(1);
         System.out.println("Retrieved CosifCode: " + results.get(0).getCosifCode());
-        assertThat(results.get(0).getCosifCode().trim()).isEqualTo("COSIFCODE01");
+        assertThat(results.get(0).getCosifCode().trim()).isEqualTo("COSIF123456");
     }
 
     @Test
     void shouldCheckIfProductCosifExistsByProductCodeAndCosifCode() {
-        boolean exists = repository.existsByProductCodeAndCosifCode("P001", "COSIFCODE01");
-        System.out.println("Existence check for P001 and COSIFCODE01: " + exists);
+        boolean exists = repository.existsByProductCodeAndCosifCode("P001", "COSIF123456");
+        System.out.println("Existence check for P001 and COSIF123456: " + exists);
         assertThat(exists).isTrue();
     }
 

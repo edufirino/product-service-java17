@@ -1,8 +1,12 @@
 package com.bnp.manualtransaction.application.service;
 
+import com.bnp.manualtransaction.domain.dto.ManualTransactionResponse;
 import com.bnp.manualtransaction.domain.entity.ManualTransactionEntity;
 import com.bnp.manualtransaction.domain.entity.ManualTransactionId;
 import com.bnp.manualtransaction.domain.repository.ManualTransactionRepository;
+import com.bnp.manualtransaction.mapper.ManualTransactionMapper;
+import com.bnp.product.domain.entity.ProductEntity;
+import com.bnp.product.domain.repository.ProductRepository;
 import com.bnp.productcosif.domain.repository.ProductCosifRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -10,21 +14,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ManualTransactionService {
 
     private final ManualTransactionRepository repository;
     private final ProductCosifRepository productCosifRepository;
+    private final ProductRepository productRepository;
 
     public ManualTransactionService(ManualTransactionRepository repository,
-                                    ProductCosifRepository productCosifRepository) {
+                                    ProductCosifRepository productCosifRepository,
+                                    ProductRepository productRepository) {
         this.repository = repository;
         this.productCosifRepository = productCosifRepository;
+        this.productRepository = productRepository;
     }
 
-    public List<ManualTransactionEntity> findAll() {
-        return repository.findAll();
+    public List<ManualTransactionResponse> findAllWithDescription() {
+        return repository.findAll().stream()
+                .map(entity -> {
+                    String productDescription = productRepository.findById(entity.getProductCode())
+                            .map(ProductEntity::getProductDescription)
+                            .orElse(null);
+                    return ManualTransactionMapper.toResponseDTO(entity, productDescription);
+                })
+                .collect(Collectors.toList());
     }
 
     @Transactional

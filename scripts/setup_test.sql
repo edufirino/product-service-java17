@@ -87,7 +87,10 @@ BEGIN
     SELECT COUNT(*) INTO row_count FROM test_user.product;
     IF row_count = 0 THEN
         INSERT INTO test_user.product VALUES ('P001', 'Investment Fund', 'A');
-        INSERT INTO test_user.product VALUES ('P002', 'Savings Account', 'I');
+        INSERT INTO test_user.product VALUES ('P002', 'Savings Account', 'A');
+        INSERT INTO test_user.product VALUES ('P003', 'Mortgage Loan', 'I');
+        INSERT INTO test_user.product VALUES ('P004', 'Auto Consortium', 'I');
+		
         DBMS_OUTPUT.PUT_LINE('Test data inserted into "product".');
     ELSE
         DBMS_OUTPUT.PUT_LINE('Test data already present in "product".');
@@ -102,9 +105,13 @@ BEGIN
     SELECT COUNT(*) INTO row_count FROM test_user.product_cosif;
     IF row_count = 0 THEN
         INSERT INTO test_user.product_cosif (product_code, cosif_code, classification_code, status)
-        VALUES ('P001', 'COSIFCODE01', 'CL001A', 'A');
+        VALUES ('P001', 'COSIF123456', 'CL001', 'A');
         INSERT INTO test_user.product_cosif (product_code, cosif_code, classification_code, status)
-        VALUES ('P002', 'COSIFCODE02', 'CL002B', 'A');
+        VALUES ('P002', 'COSIF123457', 'CL002', 'A');
+        INSERT INTO test_user.product_cosif (product_code, cosif_code, classification_code, status)
+        VALUES ('P003', 'COSIF123458', 'CL003', 'I');
+        INSERT INTO test_user.product_cosif (product_code, cosif_code, classification_code, status)
+        VALUES ('P004', 'COSIF123459', 'CL004', 'I');
         DBMS_OUTPUT.PUT_LINE('Test data inserted into "product_cosif".');
     ELSE
         DBMS_OUTPUT.PUT_LINE('Test data already present in "product_cosif".');
@@ -121,12 +128,12 @@ BEGIN
         INSERT INTO test_user.manual_transaction (
             month, year, entry_number, product_code, cosif_code, description, transaction_date, user_code, amount
         ) VALUES (
-            4, 2025, 1, 'P001', 'COSIFCODE01', 'Investment Fund Transaction', TO_TIMESTAMP('2025-04-17 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'TEST', 1000.00
+            4, 2025, 1, 'P001', 'COSIF123456', 'Investment Fund Transaction', TO_TIMESTAMP('2025-04-17 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'TEST', 1000.00
         );
         INSERT INTO test_user.manual_transaction (
             month, year, entry_number, product_code, cosif_code, description, transaction_date, user_code, amount
         ) VALUES (
-            4, 2025, 2, 'P002', 'COSIFCODE02', 'Savings Account Transaction', TO_TIMESTAMP('2025-04-17 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'TEST', 2000.00
+            4, 2025, 2, 'P002', 'COSIF123457', 'Savings Account Transaction', TO_TIMESTAMP('2025-04-17 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'TEST', 2000.00
         );
         DBMS_OUTPUT.PUT_LINE('Test data inserted into "manual_transaction".');
     ELSE

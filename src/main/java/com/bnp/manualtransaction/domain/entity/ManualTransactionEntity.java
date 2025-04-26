@@ -1,5 +1,3 @@
-// Full file path: com.bnp.manualtransaction.domain.entity.ManualTransactionEntity.java
-
 package com.bnp.manualtransaction.domain.entity;
 
 import jakarta.persistence.*;
@@ -43,7 +41,8 @@ public class ManualTransactionEntity {
     @Column(name = "amount", precision = 16, scale = 2)
     private BigDecimal amount;
 
-    public ManualTransactionEntity() {}
+    public ManualTransactionEntity() {
+    }
 
     public ManualTransactionEntity(
             ManualTransactionId id,
@@ -52,8 +51,7 @@ public class ManualTransactionEntity {
             String description,
             LocalDateTime transactionDate,
             String userCode,
-            BigDecimal amount
-    ) {
+            BigDecimal amount) {
         this.id = id;
         this.productCode = productCode;
         this.cosifCode = cosifCode;
