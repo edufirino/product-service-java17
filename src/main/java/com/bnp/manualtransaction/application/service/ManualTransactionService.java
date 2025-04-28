@@ -24,8 +24,8 @@ public class ManualTransactionService {
     private final ProductRepository productRepository;
 
     public ManualTransactionService(ManualTransactionRepository repository,
-                                    ProductCosifRepository productCosifRepository,
-                                    ProductRepository productRepository) {
+            ProductCosifRepository productCosifRepository,
+            ProductRepository productRepository) {
         this.repository = repository;
         this.productCosifRepository = productCosifRepository;
         this.productRepository = productRepository;
@@ -48,8 +48,7 @@ public class ManualTransactionService {
 
         ManualTransactionId id = createTransactionId(
                 dtoFromClient.getId().getMonth(),
-                dtoFromClient.getId().getYear()
-        );
+                dtoFromClient.getId().getYear());
 
         return repository.save(buildTransactionEntity(dtoFromClient, id));
     }
@@ -76,7 +75,6 @@ public class ManualTransactionService {
                 dto.getDescription(),
                 dto.getTransactionDate() != null ? dto.getTransactionDate() : LocalDateTime.now(),
                 dto.getUserCode(),
-                dto.getAmount()
-        );
+                dto.getAmount());
     }
 }

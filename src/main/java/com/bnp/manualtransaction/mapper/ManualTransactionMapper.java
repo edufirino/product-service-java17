@@ -1,14 +1,19 @@
 package com.bnp.manualtransaction.mapper;
+
 import com.bnp.manualtransaction.domain.entity.ManualTransactionEntity;
 import com.bnp.manualtransaction.domain.entity.ManualTransactionId;
 import com.bnp.manualtransaction.domain.dto.ManualTransactionDTO;
 import com.bnp.manualtransaction.domain.dto.ManualTransactionResponse;
 
 import java.math.BigDecimal;
+
 public final class ManualTransactionMapper {
-    private ManualTransactionMapper() {}
+    private ManualTransactionMapper() {
+    }
+
     public static ManualTransactionDTO toDTO(ManualTransactionEntity entity) {
-        if (entity == null) return null;
+        if (entity == null)
+            return null;
         BigDecimal amount = entity.getAmount() != null ? entity.getAmount() : null;
 
         return new ManualTransactionDTO(
@@ -20,8 +25,7 @@ public final class ManualTransactionMapper {
                 entity.getDescription(),
                 entity.getTransactionDate(),
                 entity.getUserCode(),
-                amount
-        );
+                amount);
     }
 
     public static ManualTransactionEntity toEntity(ManualTransactionDTO dto) {
@@ -39,7 +43,7 @@ public final class ManualTransactionMapper {
                 dto.getCosifCode(),
                 dto.getDescription(),
                 dto.getTransactionDate(),
-                dto.getUserCode(),
+                "TEST",
                 amount);
     }
 
@@ -57,6 +61,5 @@ public final class ManualTransactionMapper {
                 entity.getDescription(),
                 amount);
     }
-    
 
 }

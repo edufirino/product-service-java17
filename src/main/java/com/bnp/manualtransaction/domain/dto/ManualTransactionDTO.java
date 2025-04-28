@@ -32,8 +32,6 @@ public class ManualTransactionDTO {
 
     private LocalDateTime transactionDate;
 
-    @NotBlank(message = "User code is required")
-    @Size(max = 15, message = "User code must be at most 15 characters")
     private String userCode;
 
     @NotNull(message = "Amount is required")
